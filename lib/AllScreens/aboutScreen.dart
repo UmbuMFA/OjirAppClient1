@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ojir_clientapp/AllScreens/mainscreen.dart';
+import 'package:rider_app/AllScreens/mainscreen.dart';
 
 class AboutScreen extends StatefulWidget
 {

@@ -24,7 +24,6 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-<<<<<<< HEAD
 
 android {
     compileSdkVersion 32
@@ -38,18 +37,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-=======
-apply plugin: 'com.google.gms.google-services'
-
-android {
-    compileSdkVersion 29
->>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
-<<<<<<< HEAD
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.rider_app"
@@ -60,19 +52,6 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
-=======
-    lintOptions {
-        disable 'InvalidPackage'
-    }
-
-    defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.ojir_clientapp"
-        minSdkVersion 16
-        targetSdkVersion 29
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
->>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
     }
 
     buildTypes {
@@ -90,12 +69,7 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-<<<<<<< HEAD
     implementation 'androidx.multidex:multidex:2.0.1'
 }
 
 apply plugin: 'com.google.gms.google-services'
-=======
-    // implementation 'com.google.firebase:firebase-messaging:21.0.0'
-}
->>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff

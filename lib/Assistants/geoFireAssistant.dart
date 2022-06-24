@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import 'package:rider_app/Models/nearbyAvailableDrivers.dart';
-=======
-import 'package:ojir_clientapp/Models/nearbyAvailableDrivers.dart';
->>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
 
 class GeoFireAssistant
 {

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:ojir_clientapp/AllWidgets/HistoryItem.dart';
-import 'package:ojir_clientapp/DataHandler/appData.dart';
-
+import 'package:rider_app/AllWidgets/HistoryItem.dart';
+import 'package:rider_app/DataHandler/appData.dart';
 
 class HistoryScreen extends StatefulWidget {
   @override

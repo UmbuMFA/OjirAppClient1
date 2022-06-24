@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:rider_app/AllScreens/mainscreen.dart';
 import 'package:rider_app/AllScreens/registerationScreen.dart';
 import 'package:rider_app/AllWidgets/progressDialog.dart';
@@ -9,31 +8,13 @@ import 'package:rider_app/configMaps.dart';
 import 'package:rider_app/main.dart';
 
 class LoginScreen extends StatefulWidget {
-=======
-import 'package:ojir_clientapp/AllScreens/mainscreen.dart';
-import 'package:ojir_clientapp/AllScreens/registerationScreen.dart';
-import 'package:ojir_clientapp/AllWidgets/progressDialog.dart';
-import 'package:ojir_clientapp/configMaps.dart';
-import 'package:ojir_clientapp/main.dart';
-
-
-class LoginScreen extends StatefulWidget
-{
->>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
   static const String idScreen = "login";
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
-<<<<<<< HEAD
 class _LoginScreenState extends State<LoginScreen> {
-=======
-
-
-class _LoginScreenState extends State<LoginScreen>
-{
->>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
 
@@ -46,7 +27,6 @@ class _LoginScreenState extends State<LoginScreen>
           padding: EdgeInsets.all(8.0),
           child: Column(
             children: [
-<<<<<<< HEAD
               const SizedBox(
                 height: 100.0,
               ),
@@ -75,33 +55,6 @@ class _LoginScreenState extends State<LoginScreen>
                       controller: emailTextEditingController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
-=======
-              SizedBox(height: 35.0,),
-              Image(
-                image: AssetImage("images/logo.jpeg"),
-                width: 390.0,
-                height: 250.0,
-                alignment: Alignment.center,
-              ),
-
-              SizedBox(height: 1.0,),
-              Text(
-                "Login sebagai Cleaner Hero",
-                style: TextStyle(fontSize: 24.0, fontFamily: "Brand Bold"),
-                textAlign: TextAlign.center,
-              ),
-
-              Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-
-                    SizedBox(height: 1.0,),
-                    TextField(
-                      controller: emailTextEditingController,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
->>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
                         labelText: "Email",
                         labelStyle: TextStyle(
                           fontSize: 14.0,
@@ -111,7 +64,6 @@ class _LoginScreenState extends State<LoginScreen>
                           fontSize: 10.0,
                         ),
                       ),
-<<<<<<< HEAD
                       style: const TextStyle(fontSize: 16.0),
                     ),
                     const SizedBox(
@@ -121,16 +73,6 @@ class _LoginScreenState extends State<LoginScreen>
                       controller: passwordTextEditingController,
                       obscureText: true,
                       decoration: const InputDecoration(
-=======
-                      style: TextStyle(fontSize: 14.0),
-                    ),
-
-                    SizedBox(height: 1.0,),
-                    TextField(
-                      controller: passwordTextEditingController,
-                      obscureText: true,
-                      decoration: InputDecoration(
->>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
                         labelText: "Password",
                         labelStyle: TextStyle(
                           fontSize: 14.0,
@@ -140,7 +82,6 @@ class _LoginScreenState extends State<LoginScreen>
                           fontSize: 10.0,
                         ),
                       ),
-<<<<<<< HEAD
                       style: const TextStyle(fontSize: 16.0),
                     ),
                     const SizedBox(
@@ -165,21 +106,10 @@ class _LoginScreenState extends State<LoginScreen>
                         }
                       },
                       child: const SizedBox(
-=======
-                      style: TextStyle(fontSize: 14.0),
-                    ),
-
-                    SizedBox(height: 20.0,),
-                    RaisedButton(
-                      color: Colors.yellow,
-                      textColor: Colors.white,
-                      child: Container(
->>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
                         height: 50.0,
                         child: Center(
                           child: Text(
                             "Login",
-<<<<<<< HEAD
                             style: TextStyle(
                                 fontSize: 18.0, fontFamily: "Brand Bold"),
                           ),
@@ -195,42 +125,6 @@ class _LoginScreenState extends State<LoginScreen>
                       context, RegisterationScreen.idScreen, (route) => false);
                 },
                 child: const Text(
-=======
-                            style: TextStyle(fontSize: 18.0, fontFamily: "Brand Bold"),
-                          ),
-                        ),
-                      ),
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(24.0),
-                      ),
-                      onPressed: ()
-                      {
-                        if(!emailTextEditingController.text.contains("@"))
-                        {
-                          displayToastMessage("Email address is not Valid.", context);
-                        }
-                        else if(passwordTextEditingController.text.isEmpty)
-                        {
-                          displayToastMessage("Password is mandatory.", context);
-                        }
-                        else
-                        {
-                          loginAndAuthenticateUser(context);
-                        }
-                      },
-                    ),
-
-                  ],
-                ),
-              ),
-
-              FlatButton(
-                onPressed: ()
-                {
-                  Navigator.pushNamedAndRemoveUntil(context, RegisterationScreen.idScreen, (route) => false);
-                },
-                child: Text(
->>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
                   "Do not have an Account? Register Here",
                 ),
               ),
@@ -243,7 +137,6 @@ class _LoginScreenState extends State<LoginScreen>
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-<<<<<<< HEAD
   void loginAndAuthenticateUser(BuildContext context) async {
     showDialog(
         context: context,
@@ -279,46 +172,6 @@ class _LoginScreenState extends State<LoginScreen>
         }
       });
     } else {
-=======
-  void loginAndAuthenticateUser(BuildContext context) async
-  {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context)
-      {
-        return ProgressDialog(message: "Authenticating, Please wait...",);
-      }
-    );
-
-    final User firebaseUser = (await _firebaseAuth
-        .signInWithEmailAndPassword(
-        email: emailTextEditingController.text,
-        password: passwordTextEditingController.text
-    ).catchError((errMsg){
-      Navigator.pop(context);
-      displayToastMessage("Error: " + errMsg.toString(), context);
-    })).user;
-
-    if(firebaseUser != null)
-    {
-      usersRef.child(firebaseUser.uid).once().then((DataSnapshot snap){
-        if(snap.value != null)
-        {
-          Navigator.pushNamedAndRemoveUntil(context, MainScreen.idScreen, (route) => false);
-          displayToastMessage("you are logged-in now.", context);
-        }
-        else
-        {
-          Navigator.pop(context);
-          _firebaseAuth.signOut();
-          displayToastMessage("No record exists for this user. Please create new account.", context);
-        }
-      });
-    }
-    else
-    {
->>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
       Navigator.pop(context);
       displayToastMessage("Error Occured, can not be Signed-in.", context);
     }

@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
 
-<<<<<<< HEAD
 class CollectFareDialog extends StatelessWidget {
   final String? paymentMethod;
   final int? fareAmount;
-=======
-class CollectFareDialog extends StatelessWidget
-{
-  final String paymentMethod;
-  final int fareAmount;
->>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
 
   CollectFareDialog({this.paymentMethod, this.fareAmount});
 
@@ -30,7 +23,6 @@ class CollectFareDialog extends StatelessWidget
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-<<<<<<< HEAD
             SizedBox(
               height: 22.0,
             ),
@@ -72,34 +64,6 @@ class CollectFareDialog extends StatelessWidget
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: RaisedButton(
                 onPressed: () async {
-=======
-            SizedBox(height: 22.0,),
-
-            Text("Trip Fare", style: TextStyle(fontSize: 16.0, fontFamily: "Brand Bold"),),
-
-            SizedBox(height: 22.0,),
-
-            Divider(height: 2.0, thickness: 2.0,),
-
-            SizedBox(height: 16.0,),
-
-            Text("\$$fareAmount", style: TextStyle(fontSize: 55.0, fontFamily: "Brand Bold"),),
-
-            SizedBox(height: 16.0,),SizedBox(height: 16.0,),
-
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: Text("This is the total trip amount, it has been charged to the rider.", textAlign: TextAlign.center,),
-            ),
-
-            SizedBox(height: 30.0,),
-
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: RaisedButton(
-                onPressed: () async
-                {
->>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
                   Navigator.pop(context, "close");
                 },
                 color: Colors.deepPurpleAccent,
@@ -108,7 +72,6 @@ class CollectFareDialog extends StatelessWidget
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-<<<<<<< HEAD
                       Text(
                         "Pay Cash",
                         style: TextStyle(
@@ -121,23 +84,14 @@ class CollectFareDialog extends StatelessWidget
                         color: Colors.white,
                         size: 26.0,
                       ),
-=======
-                      Text("Pay Cash", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white),),
-                      Icon(Icons.attach_money, color: Colors.white, size: 26.0,),
->>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
                     ],
                   ),
                 ),
               ),
             ),
-<<<<<<< HEAD
             SizedBox(
               height: 30.0,
             ),
-=======
-
-            SizedBox(height: 30.0,),
->>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
           ],
         ),
       ),
