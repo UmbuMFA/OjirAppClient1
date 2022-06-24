@@ -1,0 +1,112 @@
+{
+  "project_info": {
+<<<<<<< HEAD
+    "project_number": "1091072980858",
+    "firebase_url": "https://flutter-uber-23622-default-rtdb.firebaseio.com",
+    "project_id": "flutter-uber-23622",
+    "storage_bucket": "flutter-uber-23622.appspot.com"
+=======
+    "project_number": "421274990157",
+    "firebase_url": "https://organikjadirpapp-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "organikjadirpapp",
+    "storage_bucket": "organikjadirpapp.appspot.com"
+>>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
+  },
+  "client": [
+    {
+      "client_info": {
+<<<<<<< HEAD
+        "mobilesdk_app_id": "1:1091072980858:android:41eddb4b8a2b9eb3e488c3",
+        "android_client_info": {
+          "package_name": "com.example.driver_app"
+=======
+        "mobilesdk_app_id": "1:421274990157:android:e188c5c0c03359a1c74e04",
+        "android_client_info": {
+          "package_name": "com.example.ojir_clientapp"
+>>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
+        }
+      },
+      "oauth_client": [
+        {
+<<<<<<< HEAD
+          "client_id": "1091072980858-1fn0fusbpckrc0uih08qq35tv4voalsg.apps.googleusercontent.com",
+=======
+          "client_id": "421274990157-gs3uurqssoh6ss5785eare4lt0drg63d.apps.googleusercontent.com",
+>>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+<<<<<<< HEAD
+          "current_key": "AIzaSyAp8ZTfe9PowRs8Vm7DErab1jGh_mlKSXM"
+=======
+          "current_key": "AIzaSyAAot_U5HG1IO1QCPvUojgpqXTX4eGVQSA"
+>>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+<<<<<<< HEAD
+              "client_id": "1091072980858-1fn0fusbpckrc0uih08qq35tv4voalsg.apps.googleusercontent.com",
+=======
+              "client_id": "421274990157-gs3uurqssoh6ss5785eare4lt0drg63d.apps.googleusercontent.com",
+>>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+<<<<<<< HEAD
+        "mobilesdk_app_id": "1:1091072980858:android:d7180c342dff0f44e488c3",
+        "android_client_info": {
+          "package_name": "com.example.rider_app"
+=======
+        "mobilesdk_app_id": "1:421274990157:android:2d3d64eb893a27ecc74e04",
+        "android_client_info": {
+          "package_name": "com.example.ojir_heroapp"
+>>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
+        }
+      },
+      "oauth_client": [
+        {
+<<<<<<< HEAD
+          "client_id": "1091072980858-1fn0fusbpckrc0uih08qq35tv4voalsg.apps.googleusercontent.com",
+=======
+          "client_id": "421274990157-gs3uurqssoh6ss5785eare4lt0drg63d.apps.googleusercontent.com",
+>>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+<<<<<<< HEAD
+          "current_key": "AIzaSyAp8ZTfe9PowRs8Vm7DErab1jGh_mlKSXM"
+=======
+          "current_key": "AIzaSyAAot_U5HG1IO1QCPvUojgpqXTX4eGVQSA"
+>>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+<<<<<<< HEAD
+              "client_id": "1091072980858-1fn0fusbpckrc0uih08qq35tv4voalsg.apps.googleusercontent.com",
+=======
+              "client_id": "421274990157-gs3uurqssoh6ss5785eare4lt0drg63d.apps.googleusercontent.com",
+>>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

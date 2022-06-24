@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
+    package="com.example.rider_app.rider_app">
+    <!-- The INTERNET permission is required for development. Specifically,
+         the Flutter tool needs it to communicate with the running application
+=======
+    package="com.example.ojir_clientapp">
+    <!-- Flutter needs it to communicate with the running application
+>>>>>>> 5c0bd2cd30637bd8042f6668b7b79d3af25aedff
+         to allow setting breakpoints, to provide hot reload, etc.
+    -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+</manifest>
