@@ -115,15 +115,15 @@ class AssistantMethods {
   static sendNotificationToDriver(
       String token, context, String ride_request_id) async {
     var destionation =
-        Provider.of<AppData>(context, listen: false).dropOffLocation;
+        Provider.of<AppData>(context, listen: false).pickUpLocation;
     Map<String, String> headerMap = {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': serverToken,
     };
 
     Map notificationMap = {
-      'body': 'DropOff Address, ${destionation!.placeName}',
-      'title': 'New Ride Request'
+      'body': 'Location, ${destionation!.placeName}',
+      'title': 'New Request'
     };
 
     Map dataMap = {

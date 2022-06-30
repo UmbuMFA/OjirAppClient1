@@ -99,21 +99,21 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       "longitude": pickUp.longitude.toString(),
     };
 
-    Map dropOffLocMap = {
-      "latitude": dropOff!.latitude.toString(),
-      "longitude": dropOff.longitude.toString(),
-    };
+    // Map dropOffLocMap = {
+    //   "latitude": dropOff!.latitude.toString(),
+    //   "longitude": dropOff.longitude.toString(),
+    // };
 
     Map rideInfoMap = {
       "driver_id": "waiting",
       "payment_method": "cash",
       "pickup": pickUpLocMap,
-      "dropoff": dropOffLocMap,
+      // "dropoff": dropOffLocMap,
       "created_at": DateTime.now().toString(),
       "rider_name": userCurrentInfo.name,
       "rider_phone": userCurrentInfo.phone,
       "pickup_address": pickUp.placeName,
-      "dropoff_address": dropOff.placeName,
+      // "dropoff_address": dropOff.placeName,
       "ride_type": carRideType,
     };
 
@@ -144,29 +144,29 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       }
 
       if (event.snapshot.child("driver_location").value.toString() != null) {
-        double driverLat = double.parse(event.snapshot
-            .child("driver_location")
-            .child("latitude")
-            .value
-            .toString()
-            .toString());
-        double driverLng = double.parse(event.snapshot
-            .child("driver_location")
-            .child("longitude")
-            .value
-            .toString()
-            .toString());
-        LatLng driverCurrentLocation = LatLng(driverLat, driverLng);
+        // double driverLat = double.parse(event.snapshot
+        //     .child("driver_location")
+        //     .child("latitude")
+        //     .value
+        //     .toString()
+        //     .toString());
+        // double driverLng = double.parse(event.snapshot
+        //     .child("driver_location")
+        //     .child("longitude")
+        //     .value
+        //     .toString()
+        //     .toString());
+        // LatLng driverCurrentLocation = LatLng(driverLat, driverLng);
 
-        if (statusRide == "accepted") {
-          updateRideTimeToPickUpLoc(driverCurrentLocation);
-        } else if (statusRide == "onride") {
-          updateRideTimeToDropOffLoc(driverCurrentLocation);
-        } else if (statusRide == "arrived") {
-          setState(() {
-            rideStatus = "Driver has Arrived.";
-          });
-        }
+        // if (statusRide == "accepted") {
+        //   updateRideTimeToPickUpLoc(driverCurrentLocation);
+        // } else if (statusRide == "onride") {
+        //   updateRideTimeToDropOffLoc(driverCurrentLocation);
+        // } else if (statusRide == "arrived") {
+        //   setState(() {
+        //     rideStatus = "Driver has Arrived.";
+        //   });
+        // }
       }
 
       if (event.snapshot.child("status").value.toString() != null) {
@@ -409,10 +409,8 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
               //Drawer Body Contrllers
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => HistoryScreen()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => HistoryScreen()));
                 },
                 child: const ListTile(
                   leading: Icon(Icons.history),
@@ -532,157 +530,6 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
             ),
           ),
 
-          //Search Ui
-          Positioned(
-            left: 0.0,
-            right: 0.0,
-            bottom: 0.0,
-            child: AnimatedSize(
-              curve: Curves.bounceIn,
-              duration: const Duration(milliseconds: 160),
-              child: Container(
-                height: searchContainerHeight,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(18.0),
-                      topRight: Radius.circular(18.0)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black,
-                      blurRadius: 16.0,
-                      spreadRadius: 0.5,
-                      offset: Offset(0.7, 0.7),
-                    ),
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 24.0, vertical: 18.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 6.0),
-                      const Text(
-                        "Hi there,",
-                        style: TextStyle(fontSize: 12.0),
-                      ),
-                      const Text(
-                        "Where to?",
-                        style:
-                            TextStyle(fontSize: 20.0, fontFamily: "Brand Bold"),
-                      ),
-                      const SizedBox(height: 20.0),
-                      GestureDetector(
-                        onTap: () async {
-                          var res = await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SearchScreen()));
-
-                          if (res == "obtainDirection") {
-                            displayRideDetailsContainer();
-                          }
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5.0),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Colors.black54,
-                                blurRadius: 6.0,
-                                spreadRadius: 0.5,
-                                offset: Offset(0.7, 0.7),
-                              ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Row(
-                              children: const [
-                                Icon(
-                                  Icons.search,
-                                  color: Colors.blueAccent,
-                                ),
-                                SizedBox(
-                                  width: 10.0,
-                                ),
-                                Text("Search Drop Off"),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 24.0),
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.home,
-                            color: Colors.grey,
-                          ),
-                          const SizedBox(
-                            width: 12.0,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                Provider.of<AppData>(context).pickUpLocation !=
-                                        null
-                                    ? (Provider.of<AppData>(context)
-                                        .pickUpLocation!
-                                        .placeName!
-                                        .toString())
-                                    : "Add Home",
-                                maxLines: 2,
-                                softWrap: false,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              const Text(
-                                "Your living home address",
-                                style: TextStyle(
-                                    color: Colors.black54, fontSize: 12.0),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10.0),
-                      DividerWidget(),
-                      const SizedBox(height: 16.0),
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.work,
-                            color: Colors.grey,
-                          ),
-                          const SizedBox(
-                            width: 12.0,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text("Add Work"),
-                              SizedBox(
-                                height: 4.0,
-                              ),
-                              Text(
-                                "Your office address",
-                                style: TextStyle(
-                                    color: Colors.black54, fontSize: 12.0),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-
           Positioned(
               left: 0,
               right: 0,
@@ -752,6 +599,15 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                             };
                             newHelp.set(map);
                             currentHelp = newHelp.key.toString();
+
+                            setState(() {
+                              state = "requesting";
+                              carRideType = "bike";
+                            });
+                            displayRequestRideContainer();
+                            availableDrivers =
+                                GeoFireAssistant.nearByAvailableDriversList;
+                            searchNearestDriver();
                           } else {
                             buttonText = "Buang Sampah";
                             FirebaseDatabase.instance
@@ -772,385 +628,6 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                   )
                 ],
               )),
-
-          //Ride Details Ui
-          Positioned(
-            bottom: 0.0,
-            left: 0.0,
-            right: 0.0,
-            child: AnimatedSize(
-              curve: Curves.bounceIn,
-              duration: const Duration(milliseconds: 160),
-              child: Container(
-                height: rideDetailsContainerHeight,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16.0),
-                    topRight: Radius.circular(16.0),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black,
-                      blurRadius: 16.0,
-                      spreadRadius: 0.5,
-                      offset: Offset(0.7, 0.7),
-                    ),
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 17.0),
-                  child: Column(
-                    children: [
-                      //bike ride
-                      GestureDetector(
-                        onTap: () {
-                          displayToastMessage("searching Bike...", context);
-
-                          setState(() {
-                            state = "requesting";
-                            carRideType = "bike";
-                          });
-                          displayRequestRideContainer();
-                          availableDrivers =
-                              GeoFireAssistant.nearByAvailableDriversList;
-                          searchNearestDriver();
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 16.0),
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  "images/bike.png",
-                                  height: 70.0,
-                                  width: 80.0,
-                                ),
-                                const SizedBox(
-                                  width: 16.0,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text(
-                                      "Bike",
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        fontFamily: "Brand Bold",
-                                      ),
-                                    ),
-                                    Text(
-                                      ((tripDirectionDetails != null)
-                                          ? tripDirectionDetails!.distanceText!
-                                          : ''),
-                                      style: const TextStyle(
-                                        fontSize: 16.0,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Expanded(child: Container()),
-                                Text(
-                                  ((tripDirectionDetails != null)
-                                      ? '\$${(AssistantMethods.calculateFares(tripDirectionDetails!)) / 2}'
-                                      : ''),
-                                  style: const TextStyle(
-                                    fontFamily: "Brand Bold",
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-
-                      const SizedBox(
-                        height: 10.0,
-                      ),
-                      const Divider(
-                        height: 2.0,
-                        thickness: 2.0,
-                      ),
-                      const SizedBox(
-                        height: 10.0,
-                      ),
-
-                      //uber-go ride
-                      GestureDetector(
-                        onTap: () {
-                          displayToastMessage("searching Uber-Go...", context);
-
-                          setState(() {
-                            state = "requesting";
-                            carRideType = "uber-go";
-                          });
-                          displayRequestRideContainer();
-                          availableDrivers =
-                              GeoFireAssistant.nearByAvailableDriversList;
-                          searchNearestDriver();
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 16.0),
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  "images/ubergo.png",
-                                  height: 70.0,
-                                  width: 80.0,
-                                ),
-                                const SizedBox(
-                                  width: 16.0,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text(
-                                      "Uber-Go",
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        fontFamily: "Brand Bold",
-                                      ),
-                                    ),
-                                    Text(
-                                      ((tripDirectionDetails != null)
-                                          ? tripDirectionDetails!.distanceText!
-                                          : ''),
-                                      style: const TextStyle(
-                                        fontSize: 16.0,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Expanded(child: Container()),
-                                Text(
-                                  ((tripDirectionDetails != null)
-                                      ? '\$${AssistantMethods.calculateFares(tripDirectionDetails!)}'
-                                      : ''),
-                                  style: const TextStyle(
-                                    fontFamily: "Brand Bold",
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-
-                      const SizedBox(
-                        height: 10.0,
-                      ),
-                      const Divider(
-                        height: 2.0,
-                        thickness: 2.0,
-                      ),
-                      const SizedBox(
-                        height: 10.0,
-                      ),
-
-                      //uber-x ride
-                      GestureDetector(
-                        onTap: () {
-                          displayToastMessage("searching Uber-X...", context);
-
-                          setState(() {
-                            state = "requesting";
-                            carRideType = "uber-x";
-                          });
-                          displayRequestRideContainer();
-                          availableDrivers =
-                              GeoFireAssistant.nearByAvailableDriversList;
-                          searchNearestDriver();
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 16.0),
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  "images/uberx.png",
-                                  height: 70.0,
-                                  width: 80.0,
-                                ),
-                                const SizedBox(
-                                  width: 16.0,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text(
-                                      "Uber-X",
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        fontFamily: "Brand Bold",
-                                      ),
-                                    ),
-                                    Text(
-                                      ((tripDirectionDetails != null)
-                                          ? tripDirectionDetails!.distanceText!
-                                          : ''),
-                                      style: const TextStyle(
-                                        fontSize: 16.0,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Expanded(child: Container()),
-                                Text(
-                                  ((tripDirectionDetails != null)
-                                      ? '\$${(AssistantMethods.calculateFares(tripDirectionDetails!)) * 2}'
-                                      : ''),
-                                  style: const TextStyle(
-                                    fontFamily: "Brand Bold",
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-
-                      const SizedBox(
-                        height: 10.0,
-                      ),
-                      const Divider(
-                        height: 2.0,
-                        thickness: 2.0,
-                      ),
-                      const SizedBox(
-                        height: 10.0,
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        child: Row(
-                          children: const [
-                            Icon(
-                              FontAwesomeIcons.moneyCheckAlt,
-                              size: 18.0,
-                              color: Colors.black54,
-                            ),
-                            SizedBox(
-                              width: 16.0,
-                            ),
-                            Text("Cash"),
-                            SizedBox(
-                              width: 6.0,
-                            ),
-                            Icon(
-                              Icons.keyboard_arrow_down,
-                              color: Colors.black54,
-                              size: 16.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-
-          //Cancel Ui
-          Positioned(
-            bottom: 0.0,
-            left: 0.0,
-            right: 0.0,
-            child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(16.0),
-                  topRight: Radius.circular(16.0),
-                ),
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    spreadRadius: 0.5,
-                    blurRadius: 16.0,
-                    color: Colors.black54,
-                    offset: Offset(0.7, 0.7),
-                  ),
-                ],
-              ),
-              height: requestRideContainerHeight,
-              child: Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 12.0,
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      child: ColorizeAnimatedTextKit(
-                        onTap: () {
-                          print("Tap Event");
-                        },
-                        text: const [
-                          "Requesting a Ride...",
-                          "Please wait...",
-                          "Finding a Driver...",
-                        ],
-                        textStyle:
-                            TextStyle(fontSize: 55.0, fontFamily: "Signatra"),
-                        colors: const [
-                          Colors.green,
-                          Colors.purple,
-                          Colors.pink,
-                          Colors.blue,
-                          Colors.yellow,
-                          Colors.red,
-                        ],
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 22.0,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        cancelRideRequest();
-                        resetApp();
-                      },
-                      child: Container(
-                        height: 60.0,
-                        width: 60.0,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(26.0),
-                          border: Border.all(
-                              width: 2.0, color: Colors.grey.shade300),
-                        ),
-                        child: const Icon(
-                          Icons.close,
-                          size: 26.0,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10.0,
-                    ),
-                    Container(
-                      width: double.infinity,
-                      child: const Text(
-                        "Cancel Ride",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 12.0),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
 
           //Display Assisned Driver Info
           Positioned(
@@ -1495,23 +972,12 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 
     var driver = availableDrivers[0];
 
-    driversRef
-        .child(driver.key!)
-        .child("car_details")
-        .child("type")
-        .once()
-        .then((event) async {
+    driversRef.child(driver.key!).once().then((event) async {
       if (event.snapshot.value != null) {
-        String carType = event.snapshot.value.toString();
-        if (carType == carRideType) {
-          notifyDriver(driver);
-          availableDrivers.removeAt(0);
-        } else {
-          displayToastMessage(
-              "$carRideType drivers not available. Try again.", context);
-        }
+        notifyDriver(driver);
+        availableDrivers.removeAt(0);
       } else {
-        displayToastMessage("No car found. Try again.", context);
+        displayToastMessage("No driver found. Try again.", context);
       }
     });
   }
