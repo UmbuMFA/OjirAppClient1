@@ -1,10 +1,14 @@
+import 'dart:convert';
+
 import 'package:dart_eval/dart_eval.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:rider_app/AllScreens/registerationScreen.dart';
 import 'package:rider_app/configMaps.dart';
 import 'package:rider_app/main.dart';
+import 'package:http/http.dart' as http;
 
 class ScannerScreen extends StatefulWidget {
   static const String idScreen = "about";
@@ -51,13 +55,35 @@ class _MyScannerScreenState extends State<ScannerScreen> {
         driverName = "Driver : ${snapshotDriverName.value}";
         bobot = "${splitted[1]} kg";
 
-        double i = double.parse(splitted[1]) / 1000;
-        poin = "Dapat poin : $i";
+        http
+            .post(
+              Uri.parse('https://localhost/api/gete_point/member'),
+              body: jsonEncode({
+                'banksampah_id': "",
+                'berat': splitted[1].toString(),
+              }),
+            )
+            .then((value) => () {
+                  double i = double.parse(
+                      jsonDecode(value.body).get('result').toString());
+                  poin = "Dapat poin : $i";
 
-        Map<String, Object> poinData = {
-          "poin": double.parse(snapshotUserPoin.value.toString()) + i,
-        };
-        usersRef.child(userCurrentInfo.id!).update(poinData);
+                  Map<String, Object> poinData = {
+                    "poin": double.parse(snapshotUserPoin.value.toString()) + i,
+                  };
+                  usersRef.child(userCurrentInfo.id!).update(poinData);
+                })
+            .catchError((onError) => () {
+                  displayToastMessage(onError.toString(), context);
+                });
+
+        // double i = double.parse(splitted[1]) / 1000;
+        // poin = "Dapat poin : $i";
+        //
+        // Map<String, Object> poinData = {
+        //   "poin": double.parse(snapshotUserPoin.value.toString()) + i,
+        // };
+        // usersRef.child(userCurrentInfo.id!).update(poinData);
       });
     });
   }
