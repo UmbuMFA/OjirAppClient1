@@ -104,15 +104,18 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     //   "longitude": dropOff.longitude.toString(),
     // };
 
+
     Map rideInfoMap = {
       "driver_id": "waiting",
       "payment_method": "cash",
       "pickup": pickUpLocMap,
+      "dropoff": pickUpLocMap,
       // "dropoff": dropOffLocMap,
       "created_at": DateTime.now().toString(),
       "rider_name": userCurrentInfo.name,
       "rider_phone": userCurrentInfo.phone,
       "pickup_address": pickUp.placeName,
+      "dropoff_address": pickUp.placeName,
       // "dropoff_address": dropOff.placeName,
       "ride_type": carRideType,
     };
@@ -948,7 +951,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     if (nearByIcon == null) {
       ImageConfiguration imageConfiguration =
           createLocalImageConfiguration(context, size: const Size(2, 2));
-      BitmapDescriptor.fromAssetImage(imageConfiguration, "images/car_ios.png")
+      BitmapDescriptor.fromAssetImage(imageConfiguration, "images/car_android.png")
           .then((value) {
         nearByIcon = value;
       });
