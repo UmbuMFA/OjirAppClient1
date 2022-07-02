@@ -104,7 +104,6 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     //   "longitude": dropOff.longitude.toString(),
     // };
 
-
     Map rideInfoMap = {
       "driver_id": "waiting",
       "payment_method": "cash",
@@ -147,29 +146,27 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       }
 
       if (event.snapshot.child("driver_location").value.toString() != null) {
-        // double driverLat = double.parse(event.snapshot
-        //     .child("driver_location")
-        //     .child("latitude")
-        //     .value
-        //     .toString()
-        //     .toString());
-        // double driverLng = double.parse(event.snapshot
-        //     .child("driver_location")
-        //     .child("longitude")
-        //     .value
-        //     .toString()
-        //     .toString());
-        // LatLng driverCurrentLocation = LatLng(driverLat, driverLng);
+        double driverLat = double.parse(event.snapshot
+            .child("driver_location")
+            .child("latitude")
+            .value
+            .toString());
+        double driverLng = double.parse(event.snapshot
+            .child("driver_location")
+            .child("longitude")
+            .value
+            .toString());
+        LatLng driverCurrentLocation = LatLng(driverLat, driverLng);
 
-        // if (statusRide == "accepted") {
-        //   updateRideTimeToPickUpLoc(driverCurrentLocation);
-        // } else if (statusRide == "onride") {
-        //   updateRideTimeToDropOffLoc(driverCurrentLocation);
-        // } else if (statusRide == "arrived") {
-        //   setState(() {
-        //     rideStatus = "Driver has Arrived.";
-        //   });
-        // }
+        if (statusRide == "accepted") {
+          updateRideTimeToPickUpLoc(driverCurrentLocation);
+        } else if (statusRide == "onride") {
+          updateRideTimeToDropOffLoc(driverCurrentLocation);
+        } else if (statusRide == "arrived") {
+          setState(() {
+            rideStatus = "Driver has Arrived.";
+          });
+        }
       }
 
       if (event.snapshot.child("status").value.toString() != null) {
@@ -193,22 +190,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
             ),
           );
 
-          String driverId = "";
-          if (res == "close") {
-            if (event.snapshot.child("driver_id").value.toString() != null) {
-              driverId =
-                  event.snapshot.child("driver_id").value.toString().toString();
-            }
-
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => RatingScreen(driverId: driverId)));
-
-            rideRequestRef.onDisconnect();
-            rideRequestRef = null!;
-            rideStreamSubscription.cancel();
-            rideStreamSubscription = null!;
-            resetApp();
-          }
+          rideRequestRef.onDisconnect();
         }
       }
     });
@@ -951,7 +933,8 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     if (nearByIcon == null) {
       ImageConfiguration imageConfiguration =
           createLocalImageConfiguration(context, size: const Size(2, 2));
-      BitmapDescriptor.fromAssetImage(imageConfiguration, "images/car_android.png")
+      BitmapDescriptor.fromAssetImage(
+              imageConfiguration, "images/car_android.png")
           .then((value) {
         nearByIcon = value;
       });

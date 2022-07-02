@@ -14,7 +14,7 @@ class CollectFareDialog extends StatelessWidget {
       ),
       backgroundColor: Colors.transparent,
       child: Container(
-        margin: EdgeInsets.all(5.0),
+        margin: const EdgeInsets.all(5.0),
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -23,65 +23,39 @@ class CollectFareDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 22.0,
             ),
-            Text(
-              "Trip Fare",
+            const Text(
+              "Thank You",
               style: TextStyle(fontSize: 16.0, fontFamily: "Brand Bold"),
             ),
-            SizedBox(
-              height: 22.0,
-            ),
-            Divider(
+            const Divider(
               height: 2.0,
               thickness: 2.0,
             ),
-            SizedBox(
-              height: 16.0,
-            ),
-            Text(
-              "\$$fareAmount",
-              style: TextStyle(fontSize: 55.0, fontFamily: "Brand Bold"),
-            ),
-            SizedBox(
-              height: 16.0,
-            ),
-            SizedBox(
-              height: 16.0,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: Text(
-                "This is the total trip amount, it has been charged to the rider.",
-                textAlign: TextAlign.center,
-              ),
-            ),
-            SizedBox(
+            const SizedBox(
               height: 30.0,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: RaisedButton(
                 onPressed: () async {
                   Navigator.pop(context, "close");
                 },
-                color: Colors.deepPurpleAccent,
+                color: const Color(0xFF1bac4b),
                 child: Padding(
-                  padding: EdgeInsets.all(17.0),
+                  padding: const EdgeInsets.all(17.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: const [
                       Text(
-                        "Pay Cash",
+                        "Done",
                         style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                            fontSize: 20.0, fontWeight: FontWeight.bold),
                       ),
                       Icon(
-                        Icons.attach_money,
-                        color: Colors.white,
+                        Icons.check,
                         size: 26.0,
                       ),
                     ],
@@ -89,7 +63,7 @@ class CollectFareDialog extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30.0,
             ),
           ],
