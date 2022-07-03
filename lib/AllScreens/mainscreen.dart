@@ -9,6 +9,7 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:rider_app/AllScreens/historyScreen.dart';
 import 'package:rider_app/AllScreens/scannerScreen.dart';
@@ -85,7 +86,25 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     // TODO: implement initState
     super.initState();
 
+    perm();
+
     AssistantMethods.getCurrentOnlineUserInfo();
+  }
+
+  void perm() async {
+    if (await Permission.contacts.request().isGranted) {}
+
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.location,
+      Permission.storage,
+      Permission.camera,
+      Permission.phone,
+    ].request();
+    print(statuses[Permission.location]);
+
+    if (await Permission.location.request().isGranted) {
+      AssistantMethods.getCurrentOnlineUserInfo();
+    }
   }
 
   void saveRideRequest() {
@@ -573,17 +592,17 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                         setState(() {
                           if (currentHelp == "") {
                             buttonText = "Mencari Kurir";
-                            DatabaseReference newHelp =
-                                FirebaseDatabase.instance.ref("help").push();
-                            Map<String, Object> map = {
-                              'id': newHelp.key.toString(),
-                              'user': userCurrentInfo.id!,
-                              'komposisi': _komposisi!.index.toString(),
-                              'latitude': currentPosition.latitude,
-                              'longitude': currentPosition.longitude,
-                            };
-                            newHelp.set(map);
-                            currentHelp = newHelp.key.toString();
+                            // DatabaseReference newHelp =
+                            //     FirebaseDatabase.instance.ref("help").push();
+                            // Map<String, Object> map = {
+                            //   'id': newHelp.key.toString(),
+                            //   'user': userCurrentInfo.id!,
+                            //   'komposisi': _komposisi!.index.toString(),
+                            //   'latitude': currentPosition.latitude,
+                            //   'longitude': currentPosition.longitude,
+                            // };
+                            // newHelp.set(map);
+                            currentHelp = "newHelp.key.toString()";
 
                             setState(() {
                               state = "requesting";
@@ -595,10 +614,10 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                             searchNearestDriver();
                           } else {
                             buttonText = "Buang Sampah";
-                            FirebaseDatabase.instance
-                                .ref("help")
-                                .child(currentHelp)
-                                .remove();
+                            // FirebaseDatabase.instance
+                            //     .ref("help")
+                            //     .child(currentHelp)
+                            //     .remove();
                             currentHelp = "";
                           }
                         });

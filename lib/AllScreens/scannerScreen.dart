@@ -57,9 +57,9 @@ class _MyScannerScreenState extends State<ScannerScreen> {
 
         http
             .post(
-              Uri.parse('https://localhost/api/gete_point/member'),
+              Uri.parse('https://ojir.my.id/api/get_point/member'),
               body: jsonEncode({
-                'banksampah_id': "",
+                'banksampah_id': "1656309164",
                 'berat': splitted[1].toString(),
               }),
             )
