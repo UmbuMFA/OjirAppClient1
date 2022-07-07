@@ -18,14 +18,14 @@ class _MyAboutScreenState extends State<AboutScreen> {
           children: <Widget>[
             Container(
               height: 220,
-              child: Center(
+              child: const Center(
                 // child: Image.asset('images/uberx.png'),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 30, left: 24, right: 24),
+              padding: const EdgeInsets.only(top: 30, left: 24, right: 24),
               child: Column(
-                children: <Widget>[
+                children: const <Widget>[
                   Text(
                     'Owaste',
                     style: TextStyle(
@@ -42,19 +42,19 @@ class _MyAboutScreenState extends State<AboutScreen> {
               ),
             ),
 
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             FlatButton(
                 onPressed: () {
                   Navigator.pushNamedAndRemoveUntil(context, MainScreen.idScreen, (route) => false);
                 },
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
                 child: const Text(
                     'Go Back',
                     style: TextStyle(
                         fontSize: 18, color: Colors.black
                     )
-                ),
-                shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(10.0))
+                )
             ),
           ],
         ));

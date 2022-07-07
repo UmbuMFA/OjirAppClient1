@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:rider_app/Assistants/assistantMethods.dart';
 import 'package:rider_app/Models/history.dart';
 
@@ -7,10 +8,18 @@ class HistoryItem extends StatelessWidget {
 
   HistoryItem({this.history});
 
+  static String formatTripDate(String date) {
+    DateTime dateTime = DateTime.parse(date);
+    String formattedDate =
+        "${DateFormat.MMMd().format(dateTime)}, ${DateFormat.y().format(dateTime)} - ${DateFormat.jm().format(dateTime)}";
+
+    return formattedDate;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: Column(
         children: [
           Column(
@@ -24,22 +33,21 @@ class HistoryItem extends StatelessWidget {
                       height: 16,
                       width: 16,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 18,
                     ),
                     Expanded(
-                        child: Container(
-                            child: Text(
-                      history!.pickup!,
+                        child: Text(
+                      history!.driver!,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontSize: 18),
-                    ))),
-                    SizedBox(
+                      style: const TextStyle(fontSize: 18),
+                    )),
+                    const SizedBox(
                       width: 5,
                     ),
                     Text(
-                      '\$${history!.fares!}',
-                      style: TextStyle(
+                      '${history!.berat!} kg',
+                      style: const TextStyle(
                           fontFamily: 'Brand Bold',
                           fontSize: 16,
                           color: Colors.black87),
@@ -47,33 +55,12 @@ class HistoryItem extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Image.asset(
-                    'images/desticon.png',
-                    height: 16,
-                    width: 16,
-                  ),
-                  SizedBox(
-                    width: 18,
-                  ),
-                  Text(
-                    history!.dropOff!,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 15,
-              ),
               Text(
-                AssistantMethods.formatTripDate(history!.createdAt!),
-                style: TextStyle(color: Colors.grey),
+                formatTripDate(history!.date!),
+                style: const TextStyle(color: Colors.grey),
               ),
             ],
           ),

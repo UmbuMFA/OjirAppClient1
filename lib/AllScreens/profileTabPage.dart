@@ -57,7 +57,7 @@ class ProfileTabPage extends StatelessWidget {
               },
             ),
             InfoCard(
-              text: "0",
+              text: userCurrentInfo.poin!.toString(),
               icon: Icons.circle,
               onPressed: () async {
                 print("this is poin.");
@@ -87,7 +87,7 @@ class InfoCard extends StatelessWidget {
       onTap: () => onPressed,
       child: Card(
         color: Colors.white,
-        margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+        margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
         child: ListTile(
           leading: Icon(
             icon,

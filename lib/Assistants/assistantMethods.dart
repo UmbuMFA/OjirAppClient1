@@ -174,22 +174,30 @@ class AssistantMethods {
   }
 
   static void obtainTripRequestsHistoryData(context) {
-    var keys = Provider.of<AppData>(context, listen: false).tripHistoryKeys;
-
-    for (String key in keys) {
-      rideRequestRef.child(key).once().then((event) {
-        if (event.snapshot.value != null) {
-          rideRequestRef.child(key).child("rider_name").once().then((event) {
-            String name = event.snapshot.value.toString();
-            if (name == userCurrentInfo.name) {
-              var history = History.fromSnapshot(event.snapshot);
+    usersRef.child(userCurrentInfo.id!).child("order").once().then((value) => {
+          for (DataSnapshot snapshot in value.snapshot.children)
+            {
               Provider.of<AppData>(context, listen: false)
-                  .updateTripHistoryData(history);
+                  .updateTripHistoryData(History.fromSnapshot(snapshot))
             }
-          });
-        }
-      });
-    }
+        });
+    print("=============================================");
+    // var keys = Provider.of<AppData>(context, listen: false).tripHistoryKeys;
+    //
+    // for (String key in keys) {
+    //   rideRequestRef.child(key).once().then((event) {
+    //     if (event.snapshot.value != null) {
+    //       rideRequestRef.child(key).child("rider_name").once().then((event) {
+    //         String name = event.snapshot.value.toString();
+    //         if (name == userCurrentInfo.name) {
+    //           var history = History.fromSnapshot(event.snapshot);
+    //           Provider.of<AppData>(context, listen: false)
+    //               .updateTripHistoryData(history);
+    //         }
+    //       });
+    //     }
+    //   });
+    // }
   }
 
   static String formatTripDate(String date) {

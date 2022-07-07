@@ -18,7 +18,7 @@ class ScannerScreen extends StatefulWidget {
 }
 
 class _MyScannerScreenState extends State<ScannerScreen> {
-  String driverID = '';
+  String msg = 'Tekan Start';
   String driverName = '';
   String bobot = '';
   String poin = '';
@@ -40,52 +40,62 @@ class _MyScannerScreenState extends State<ScannerScreen> {
 
     if (!mounted) return;
 
-    setState(() async {
-      List<String> splitted = barcodeScanRes.split("_");
-      driverID = splitted[0];
-      bobot = splitted[1];
+    List<String> splitted = barcodeScanRes.split("_");
+    bobot = splitted[1];
 
-      DataSnapshot snapshotDriverName =
-          await driversRef.child(driverID).child("name").get();
-      DataSnapshot snapshotUserPoin =
-          await usersRef.child(userCurrentInfo.id!).child("poin").get();
+    DataSnapshot snapshotDriverName =
+        await driversRef.child(splitted[0]).child("name").get();
+    DataSnapshot snapshotUserPoin =
+        await usersRef.child(userCurrentInfo.id!).child("poin").get();
+
+    setState(() {
+      msg = "Driver Dikenali";
+      driverName = "Driver : ${snapshotDriverName.value}";
+      bobot = "${splitted[1]} kg";
+      poin = "Menghitung poin ...";
+
+      updatePoin(splitted[1], snapshotUserPoin, splitted[0], driverName);
+    });
+  }
+
+  void updatePoin(berat, snapshotUserPoin, driverID, driverName) async {
+    http.Response response = await http.post(
+      Uri.parse('https://ojir.my.id/api/get_point/member'),
+      body: {
+        'banksampah_id': "1656309164",
+        'berat': berat,
+      },
+    );
+
+    try {
+      double i = double.parse(jsonDecode(response.body)['result'].toString());
+
+      Map<String, Object> poinData = {
+        "poin": double.parse(snapshotUserPoin.value.toString()) + i,
+      };
+      usersRef.child(userCurrentInfo.id!).update(poinData);
+
+      DatabaseReference userOrderRef =
+          usersRef.child(userCurrentInfo.id!).child("order").push();
+      DatabaseReference driverOrderRef =
+          driversRef.child(driverID).child("order").push();
+      Map<String, dynamic> orderMap = {
+        "id1": userOrderRef.key,
+        "id2": driversRef.key,
+        "date": DateTime.now().toString(),
+        "berat": berat,
+        "driver": driverName,
+        "client": userCurrentInfo.name,
+      };
+      userOrderRef.set(orderMap);
+      driverOrderRef.set(orderMap);
 
       setState(() {
-        driverID = splitted[0];
-        driverName = "Driver : ${snapshotDriverName.value}";
-        bobot = "${splitted[1]} kg";
-
-        http
-            .post(
-              Uri.parse('https://ojir.my.id/api/get_point/member'),
-              body: jsonEncode({
-                'banksampah_id': "1656309164",
-                'berat': splitted[1].toString(),
-              }),
-            )
-            .then((value) => () {
-                  double i = double.parse(
-                      jsonDecode(value.body).get('result').toString());
-                  poin = "Dapat poin : $i";
-
-                  Map<String, Object> poinData = {
-                    "poin": double.parse(snapshotUserPoin.value.toString()) + i,
-                  };
-                  usersRef.child(userCurrentInfo.id!).update(poinData);
-                })
-            .catchError((onError) => () {
-                  displayToastMessage(onError.toString(), context);
-                });
-
-        // double i = double.parse(splitted[1]) / 1000;
-        // poin = "Dapat poin : $i";
-        //
-        // Map<String, Object> poinData = {
-        //   "poin": double.parse(snapshotUserPoin.value.toString()) + i,
-        // };
-        // usersRef.child(userCurrentInfo.id!).update(poinData);
+        poin = "Dapat poin : $i";
       });
-    });
+    } catch (exp) {
+      displayToastMessage(exp.toString(), context);
+    }
   }
 
   @override
@@ -112,7 +122,7 @@ class _MyScannerScreenState extends State<ScannerScreen> {
             const SizedBox(
               height: 100,
             ),
-            Text('$driverID', style: const TextStyle(fontSize: 20)),
+            Text('$msg', style: const TextStyle(fontSize: 20)),
             Text('$driverName', style: const TextStyle(fontSize: 20)),
             Text('$bobot', style: const TextStyle(fontSize: 20)),
             Text('$poin', style: const TextStyle(fontSize: 20)),
