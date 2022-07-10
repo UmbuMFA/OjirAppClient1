@@ -41,7 +41,7 @@ class _MyScannerScreenState extends State<ScannerScreen> {
     if (!mounted) return;
 
     List<String> splitted = barcodeScanRes.split("_");
-    bobot = splitted[1];
+    bobot = splitted[2];
 
     DataSnapshot snapshotDriverName =
         await driversRef.child(splitted[0]).child("name").get();
@@ -51,18 +51,20 @@ class _MyScannerScreenState extends State<ScannerScreen> {
     setState(() {
       msg = "Driver Dikenali";
       driverName = "Driver : ${snapshotDriverName.value}";
-      bobot = "${splitted[1]} kg";
+      bobot = "${splitted[2]} kg";
       poin = "Menghitung poin ...";
 
-      updatePoin(splitted[1], snapshotUserPoin, splitted[0], driverName);
+      updatePoin(
+          splitted[2], snapshotUserPoin, splitted[0], driverName, splitted[1]);
     });
   }
 
-  void updatePoin(berat, snapshotUserPoin, driverID, driverName) async {
+  void updatePoin(
+      berat, snapshotUserPoin, driverID, driverName, banksampah) async {
     http.Response response = await http.post(
       Uri.parse('https://ojir.my.id/api/get_point/member'),
       body: {
-        'banksampah_id': "1656309164",
+        'banksampah_id': banksampah,
         'berat': berat,
       },
     );
