@@ -38,8 +38,6 @@ class MainScreen extends StatefulWidget {
   _MainScreenState createState() => _MainScreenState();
 }
 
-enum KomposisiSampah { keras, lunak }
-
 class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   final Completer<GoogleMapController> _controllerGoogleMap = Completer();
   late GoogleMapController newGoogleMapController;
@@ -356,7 +354,6 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   );
 
   String buttonText = "Buang Sampah";
-  KomposisiSampah? _komposisi = KomposisiSampah.keras;
 
   String currentHelp = "";
 
@@ -473,7 +470,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       body: Stack(
         children: [
           GoogleMap(
-            padding: EdgeInsets.only(bottom: 200, top: 50.0, right: 6),
+            padding: const EdgeInsets.only(bottom: 100, top: 50.0, right: 6),
             mapType: MapType.normal,
             myLocationButtonEnabled: true,
             initialCameraPosition: _kGooglePlex,
@@ -488,7 +485,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
               newGoogleMapController = controller;
 
               setState(() {
-                bottomPaddingOfMap = 300.0;
+                bottomPaddingOfMap = 100.0;
               });
 
               locatePosition();
@@ -541,45 +538,6 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(16.0),
-                          topRight: Radius.circular(16.0),
-                          bottomLeft: Radius.circular(16.0),
-                          bottomRight: Radius.circular(16.0),
-                        ),
-                        border: Border.all(color: Colors.grey),
-                      ),
-                      child: Column(
-                        children: <Widget>[
-                          RadioListTile<KomposisiSampah>(
-                            title: const Text('Keras'),
-                            value: KomposisiSampah.keras,
-                            groupValue: _komposisi,
-                            onChanged: (KomposisiSampah? value) {
-                              setState(() {
-                                _komposisi = value;
-                              });
-                            },
-                          ),
-                          RadioListTile<KomposisiSampah>(
-                            title: const Text('Lunak'),
-                            value: KomposisiSampah.lunak,
-                            groupValue: _komposisi,
-                            onChanged: (KomposisiSampah? value) {
-                              setState(() {
-                                _komposisi = value;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -592,17 +550,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                         setState(() {
                           if (currentHelp == "") {
                             buttonText = "Mencari Kurir";
-                            // DatabaseReference newHelp =
-                            //     FirebaseDatabase.instance.ref("help").push();
-                            // Map<String, Object> map = {
-                            //   'id': newHelp.key.toString(),
-                            //   'user': userCurrentInfo.id!,
-                            //   'komposisi': _komposisi!.index.toString(),
-                            //   'latitude': currentPosition.latitude,
-                            //   'longitude': currentPosition.longitude,
-                            // };
-                            // newHelp.set(map);
-                            currentHelp = "newHelp.key.toString()";
+                            currentHelp = "baru";
 
                             setState(() {
                               state = "requesting";
@@ -614,10 +562,6 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                             searchNearestDriver();
                           } else {
                             buttonText = "Buang Sampah";
-                            // FirebaseDatabase.instance
-                            //     .ref("help")
-                            //     .child(currentHelp)
-                            //     .remove();
                             currentHelp = "";
                           }
                         });

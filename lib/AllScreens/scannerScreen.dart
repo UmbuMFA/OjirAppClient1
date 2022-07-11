@@ -65,6 +65,7 @@ class _MyScannerScreenState extends State<ScannerScreen> {
       Uri.parse('https://ojir.my.id/api/get_point/member'),
       body: {
         'banksampah_id': banksampah,
+        'jenis_sampah': _komposisi.toString(),
         'berat': berat,
       },
     );
@@ -88,6 +89,7 @@ class _MyScannerScreenState extends State<ScannerScreen> {
         "berat": berat,
         "driver": driverName,
         "client": userCurrentInfo.name,
+        "komposisi": _komposisi.toString(),
       };
       userOrderRef.set(orderMap);
       driverOrderRef.set(orderMap);
@@ -99,6 +101,8 @@ class _MyScannerScreenState extends State<ScannerScreen> {
       displayToastMessage(exp.toString(), context);
     }
   }
+
+  String? _komposisi = "keras";
 
   @override
   Widget build(BuildContext context) {
@@ -116,6 +120,36 @@ class _MyScannerScreenState extends State<ScannerScreen> {
       body: Container(
           alignment: Alignment.topCenter,
           child: Flex(direction: Axis.vertical, children: <Widget>[
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                children: <Widget>[
+                  RadioListTile<String>(
+                    title: const Text('Keras'),
+                    value: "keras",
+                    groupValue: _komposisi,
+                    onChanged: (String? value) {
+                      setState(() {
+                        _komposisi = value;
+                      });
+                    },
+                  ),
+                  RadioListTile<String>(
+                    title: const Text('Lunak'),
+                    value: "lunak",
+                    groupValue: _komposisi,
+                    onChanged: (String? value) {
+                      setState(() {
+                        _komposisi = value;
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(
               height: 20,
             ),
