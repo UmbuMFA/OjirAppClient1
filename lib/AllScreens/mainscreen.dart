@@ -423,6 +423,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
               ),
               GestureDetector(
                 onTap: () {
+                  AssistantMethods.getCurrentOnlineUserInfo();
                   Navigator.push(
                       context,
                       MaterialPageRoute(

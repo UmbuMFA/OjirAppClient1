@@ -102,7 +102,7 @@ class _MyScannerScreenState extends State<ScannerScreen> {
     }
   }
 
-  String? _komposisi = "keras";
+  String? _komposisi = "kering";
 
   @override
   Widget build(BuildContext context) {
@@ -128,8 +128,8 @@ class _MyScannerScreenState extends State<ScannerScreen> {
               child: Column(
                 children: <Widget>[
                   RadioListTile<String>(
-                    title: const Text('Keras'),
-                    value: "keras",
+                    title: const Text('Kering'),
+                    value: "kering",
                     groupValue: _komposisi,
                     onChanged: (String? value) {
                       setState(() {
@@ -138,8 +138,8 @@ class _MyScannerScreenState extends State<ScannerScreen> {
                     },
                   ),
                   RadioListTile<String>(
-                    title: const Text('Lunak'),
-                    value: "lunak",
+                    title: const Text('Basah'),
+                    value: "basah",
                     groupValue: _komposisi,
                     onChanged: (String? value) {
                       setState(() {
