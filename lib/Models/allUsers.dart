@@ -7,6 +7,7 @@ class Users {
   String? phone;
   String? photo;
   double? poin;
+  String? bank_sampah;
 
   Users({
     this.id,
@@ -15,6 +16,7 @@ class Users {
     this.phone,
     this.photo,
     this.poin,
+    this.bank_sampah,
   });
 
   Users.fromSnapshot(DataSnapshot dataSnapshot) {
@@ -24,5 +26,6 @@ class Users {
     phone = dataSnapshot.child("phone").value.toString();
     photo = dataSnapshot.child("photo").value.toString();
     poin = double.parse(dataSnapshot.child("poin").value.toString());
+    bank_sampah = dataSnapshot.child("bank_sampah").value.toString();
   }
 }

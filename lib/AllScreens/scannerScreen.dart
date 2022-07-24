@@ -54,17 +54,15 @@ class _MyScannerScreenState extends State<ScannerScreen> {
       bobot = "${splitted[2]} kg";
       poin = "Menghitung poin ...";
 
-      updatePoin(
-          splitted[2], snapshotUserPoin, splitted[0], driverName, splitted[1]);
+      updatePoin(splitted[2], snapshotUserPoin, splitted[0], driverName);
     });
   }
 
-  void updatePoin(
-      berat, snapshotUserPoin, driverID, driverName, banksampah) async {
+  void updatePoin(berat, snapshotUserPoin, driverID, driverName) async {
     http.Response response = await http.post(
       Uri.parse('https://ojir.my.id/api/get_point/member'),
       body: {
-        'banksampah_id': banksampah,
+        'banksampah_id': userCurrentInfo.bank_sampah!,
         'jenis_sampah': _komposisi.toString(),
         'berat': berat,
       },
